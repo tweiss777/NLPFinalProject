@@ -1,42 +1,48 @@
 import json
 import urllib.request
+import sys
 
 #Testing nyt api
 #API key for nyt article search = c0e62e93aa63482185d40750586dfbab
 
-def process_nyt(): #url is hardcoded here
-    
-    article_urls = [] #holds the list of urls
-    api_key = "c0e62e93aa63482185d40750586dfbab"
-    query = input("enter a search")
-    pages = 0 # page number shows 10 urls. 0 show the first 10 results
-
-    
-    url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key="+api_key+"&?q="+query+"&?page="+str(pages)
-    print("url= ",url)
-    
-    api_call = urllib.request.urlopen(url).read()
-    decode = api_call.decode('utf-8')
-    load_data = json.loads(decode)
-
-def nyt2(): #url is encoded using urlencode
-    query = input("enter a search term")
+def process_nyt(): #url is encoded using urlencode
+#to return a list of urls
+    query = input("enter a search term query-> ")
     pages = 0
-    base_url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?"
-    params = {'api-key': 'c0e62e93aa63482185d40750586dfbab', '?q': query, '?page': pages}
     
-    url = base_url + urllib.parse.urlencode(params)
-    api_call = urllib.request.urlopen(url).read()
-    decoded_data = api_call.decode('utf-8')
-    data = json.loads(decoded_data)
-    print(data)
-    data[]
+    url_list = [] #holds the lsit of urls returned by the api
+    try:#exception handling incase user does not input an integer
+        print("\nwill retrun the first 10 urls if left blank\n")
+        pages = int(input("Enter the number of pages to return -> "))
+    except ValueError:
+        pages = 0
+    
+    url_count = 0 #keep track of the urls shown
+    for i in range(0,pages+1):
+        base_url = "https://api.nytimes.com/svc/search/v2/articlesearch.json?"
+        params = {'api-key': 'c0e62e93aa63482185d40750586dfbab', '?q': query, '?page':i}
+    
+        #open the url and call the api
+        url = base_url + urllib.parse.urlencode(params)
+        api_call = urllib.request.urlopen(url).read()
+        decoded_data = api_call.decode('utf-8')
+        
+        
+        #json data gets stored here
+        data = json.loads(decoded_data)
+        
+        for doc in data['response']['docs']:
+            url_count+=1
+            print(str(url_count)+") ",doc['web_url'])
+        
+    
+   
+    
 
 
 
     
 
-def main():
-    #process_nyt()
-    nyt2()
+def main(): #used for testing purposes
+    process_nyt()
 main()

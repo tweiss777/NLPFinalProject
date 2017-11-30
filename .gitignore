@@ -5,6 +5,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+#JSON files
+*.json
+
+#visual studio code folder
+.vscode
+
 # C extensions
 *.so
 
