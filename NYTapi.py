@@ -4,7 +4,7 @@ import sys
 
 #Testing nyt api
 #API key for nyt article search = c0e62e93aa63482185d40750586dfbab
-
+#WARNING: API IS LIMITED TO 1000 CALLS A DAY!
 class NewYorkTimes():
     
 
