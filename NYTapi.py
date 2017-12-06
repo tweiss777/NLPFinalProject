@@ -36,7 +36,7 @@ class NewYorkTimes():
             
             for doc in data['response']['docs']:
                 url_count+=1
-                print(str(url_count)+") ",doc['web_url'])
+                print(doc['web_url'])
                 url_list.append(doc['web_url'])
         return url_list #returns the url list.
         
