@@ -8,11 +8,9 @@ import sys
 class NewYorkTimes():
     
 
-    def process_nyt(self): #url is encoded using urlencode
+    def process_nyt(self,query): #url is encoded using urlencode
     #to return a list of urls
-        query = input("enter a search term query-> ")
         pages = 0
-        
         url_list = [] #holds the lsit of urls returned by the api
         try:#exception handling incase user does not input an integer
             print("\nwill retrun the first 10 urls if left blank\n")
