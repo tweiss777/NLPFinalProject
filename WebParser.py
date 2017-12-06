@@ -22,17 +22,17 @@ from bs4 import BeautifulSoup
 class WebParser():
     #global fields & constructor
 
-    url = ""
+    # url = ""
 
-    def __init__(self):
-        #self.url = "https://www.nytimes.com/2017/11/30/theater/review-in-sleep-a-wakeful-woman-faces-long-surreal-nights.html" #test url 1
-        self.url="https://www.nytimes.com/2017/11/30/us/politics/state-department-tillerson-pompeo-trump.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=first-column-region&region=top-news&WT.nav=top-news" #test url 2
+    # def __init__(self): #used for testing purposes
+    #     #self.url = "https://www.nytimes.com/2017/11/30/theater/review-in-sleep-a-wakeful-woman-faces-long-surreal-nights.html" #test url 1
+    #     self.url="https://www.nytimes.com/2017/11/30/us/politics/state-department-tillerson-pompeo-trump.html?hp&action=click&pgtype=Homepage&clickSource=story-heading&module=first-column-region&region=top-news&WT.nav=top-news" #test url 2
 
     ###
 
     #fuctions go here.
-    def extract_body(self):
-        page = urllib.request.urlopen(self.url).read()
+    def extract_body(self,url):
+        page = urllib.request.urlopen(url).read()
 
         soup = BeautifulSoup(page,'html.parser')
         #print(soup.prettify)
@@ -41,7 +41,7 @@ class WebParser():
         final_body = ""#the article body that will be returned.
         final_body = final_body+ soup.title.getText()#append the title to the article
         
-        print(soup.title.getText())
+        #print(soup.title.getText())
         for content in article_body:
             #print(content.getText())
             final_body = final_body + content.getText()
