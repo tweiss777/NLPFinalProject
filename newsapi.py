@@ -19,9 +19,12 @@ class NewsApi():
         #sample url:https://newsapi.org/v2/everything?q=bitcoin&apiKey=daeaeab2284c44b093f841c7a9ca10ab
         base_url = "https://newsapi.org/v2/everything?"
         
-        for page in range(0,pages+1):
-            params = {'q': query,'apiKey':'daeaeab2284c44b093f841c7a9ca10ab','page':pages}
+
+        for page in range(1,pages+1):
+            params = {'q': query,'apiKey':'daeaeab2284c44b093f841c7a9ca10ab','page':page,'sources':'fox-news,the-new-york-times,cnn','from':'2014-01-01'}
             url = base_url + urllib.parse.urlencode(params)
+            print("\n")
+            print(url)
             api_call = urllib.request.urlopen(url).read()
             decoded_data = api_call.decode('utf-8')
             data = json.loads(decoded_data)
@@ -29,7 +32,12 @@ class NewsApi():
             for article in data['articles']:
                 print(article['url'])
                 urls.append(article['url'])
+<<<<<<< HEAD
             time.sleep(5)
+=======
+            time.sleep(10)
+        
+>>>>>>> 6796f89ed435b41ea0b22ff5d4db8c1cecbbe3b6
         return urls
     #being replaced by google
     def process_nyt(self,query): #url is encoded using urlencode
@@ -61,6 +69,6 @@ class NewsApi():
                 url_count+=1
                 if(doc['web_url'] not in url_list):
                     url_list.append(doc['web_url'])
-            #time.sleep(5)
+            time.sleep(10)
         return url_list #returns the url list.
         
