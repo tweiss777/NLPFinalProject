@@ -1,7 +1,11 @@
 #main file where everything will take place.
 from WebParser import *
+<<<<<<< HEAD
 from newsapi import *
 from DataProcessor import *
+=======
+from NYTapi import *
+>>>>>>> 739fe6dc7a8ce942850b5108f209f1caa1ea05ff
 
 
 categories = ["word","us","politics","ny","business","opinion","tech","science","health","sports","arts","style","food","Travel","magazine","t-magazine","realestate"] #the sections of the nytimes. to be used for clustering.
