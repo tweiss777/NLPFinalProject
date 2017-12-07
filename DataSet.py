@@ -10,8 +10,8 @@ categories = ["word","us","politics","ny","business","opinion","tech","science",
 def main():
     query = input("enter a search query -> ")
     articles = [] #will be holding a list of articles for nlp processing
-    nyt = NewsApi()
-    urls = nyt.process_nyt(query)
+    api = NewsApi()
+    urls = api.google_news_extract(query)
     url_set = set(urls)
     dp = DataProcessor()
     wp = WebParser()
