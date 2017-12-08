@@ -32,7 +32,7 @@ class WebParser():
 
     #fuctions go here.
     #exctract nyt article body
-    def extract_body(self,url):
+    def extract_body_nyt(self,url):
         page = urllib.request.urlopen(url).read()
 
         soup = BeautifulSoup(page,'html.parser')
@@ -49,13 +49,37 @@ class WebParser():
 
         return final_body
 
-    
+
     #extract fox news article body
     def extract_body_foxnews(self,url):
-        pass
+        markup = urllib.request.urlopen(url).read() #get the markup from the site
+        soup = BeautifulSoup(markup,'html.parser')
+        final_body = soup.title.getText() #save article title
+        div_body = ""
+        
+        for tag in soup.find_all('div','article-body'):
+            div_body = div_body + str(tag)
+        soup = BeautifulSoup(div_body,'html.parser')
+        ptags = "" #all <p> tags go here 
+        for p in soup.find_all('p'):
+            ptags = ptags + str(p)
+        soup = BeautifulSoup(ptags,'html.parser')
+        body = soup.get_text()
+        
+        body = body.replace("\n","")
+        body = body.replace("\t","") 
+        body = body.replace("\xa0","")
+        final_body = final_body + body
+        
+        return body  
+        
+
+
 
     def extract_body_cnn(self,url):
-        pass
+        markup = urllib.request.urlopen(url).read()
+        soup = BeautifulSoup(markup,'html.parser')
+        final_body = soup.title.getText()
 
 
 

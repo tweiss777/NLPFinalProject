@@ -21,7 +21,7 @@ class NewsApi():
         
 
         for page in range(1,pages+1):
-            params = {'q': query,'apiKey':'daeaeab2284c44b093f841c7a9ca10ab','page':page,'sources':'fox-news,the-new-york-times,cnn','from':'2014-01-01'}
+            params = {'q': query,'apiKey':'daeaeab2284c44b093f841c7a9ca10ab','page':page,'sources':'fox-news,the-new-york-times','from':'2013-01-01'}
             url = base_url + urllib.parse.urlencode(params)
             print("\n")
             print(url)
