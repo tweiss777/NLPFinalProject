@@ -32,12 +32,8 @@ class NewsApi():
             for article in data['articles']:
                 print(article['url'])
                 urls.append(article['url'])
-<<<<<<< HEAD
-            time.sleep(5)
-=======
             time.sleep(10)
         
->>>>>>> 6796f89ed435b41ea0b22ff5d4db8c1cecbbe3b6
         return urls
     #being replaced by google
     def process_nyt(self,query): #url is encoded using urlencode

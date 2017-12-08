@@ -31,6 +31,7 @@ class WebParser():
     ###
 
     #fuctions go here.
+    #exctract nyt article body
     def extract_body(self,url):
         page = urllib.request.urlopen(url).read()
 
@@ -47,5 +48,14 @@ class WebParser():
             final_body = final_body + content.getText()
 
         return final_body
+
+    
+    #extract fox news article body
+    def extract_body_foxnews(self,url):
+        pass
+
+    def extract_body_cnn(self,url):
+        pass
+
 
 
