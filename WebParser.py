@@ -33,7 +33,12 @@ class WebParser():
     #fuctions go here.
     #exctract nyt article body
     def extract_body_nyt(self,url):
-        page = urllib.request.urlopen(url).read()
+        page = ""
+        try:
+            page = urllib.request.urlopen(url).read()
+        except urllib.error.HTTPError:
+            print("failed to open url")
+            return "" 
 
         soup = BeautifulSoup(page,'html.parser')
         #print(soup.prettify)
@@ -52,7 +57,13 @@ class WebParser():
 
     #extract fox news article body
     def extract_body_foxnews(self,url):
-        markup = urllib.request.urlopen(url).read() #get the markup from the site
+        markup = ""
+        try:
+            markup = urllib.request.urlopen(url).read() #get the markup from the site
+        except urllib.error.HTTPError:
+            print("failed to open requested url")
+            return ""
+
         soup = BeautifulSoup(markup,'html.parser')
         final_body = soup.title.getText() #save article title
         div_body = ""
@@ -73,13 +84,6 @@ class WebParser():
         
         return body  
         
-
-
-
-    def extract_body_cnn(self,url):
-        markup = urllib.request.urlopen(url).read()
-        soup = BeautifulSoup(markup,'html.parser')
-        final_body = soup.title.getText()
 
 
 
