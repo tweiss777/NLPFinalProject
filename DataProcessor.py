@@ -57,16 +57,17 @@ class DataProcessor:
 
     #function to calculate the term frequency
     #will not work without numpy so comment out if numpy module not installed
+    #not reliable remove from code
     def tf_idf(self, list_doc, doc_freq, term_freq_doc, query):
 
         nr_docs = len(list_doc)  # Number of documents
         # extract terms from the query
         term_freq_query = self.process(query) # output is a list not a dictionary
 
-        print('Query terms', term_freq_query)
+        #print('Query terms', term_freq_query)
         # find terms in both query and document
         common_terms = [term for (term, freq) in term_freq_query if term in doc_freq]
-        print("common terms: ", common_terms)
+        #print("common terms: ", common_terms)
 
         # initialize similarity list to 0
         # this is a dictionary
@@ -114,15 +115,15 @@ class DataProcessor:
 
         doc_term_frequency = []
         #term_frequency = self.process(doc_list)
-        for doc in range(doc_amt):
-            term_frequency = self.process(doc_list[doc]) #tuple consists of (term, part of speech, frequency of the term)
+        for doc in range(doc_amt): #iterates through the list of documents
+            term_frequency = self.process(doc_list[doc]) #tuple consists of (term,frequency of the term)
 
             #output below used for debugging purposes
-            #print("\n\nnext document to be processed", term_frequency)
+            print("\n\nnext document to be processed", term_frequency)
             doc_term_frequency += [(term,doc,frequency) for (term,frequency) in term_frequency] #tuple consists of (term, document id, term frequency)
 
             #used for debugging purposes
-            #print("\n All terms in document:" , doc_term_frequency)
+            print("\n All terms in document:" , doc_term_frequency)
 
             #list of terms and frequences
 

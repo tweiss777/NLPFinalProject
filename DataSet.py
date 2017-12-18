@@ -2,6 +2,7 @@
 from WebParser import *
 from newsapi import *
 from DataProcessor import *
+import ast
 
 def check_url(url):
     url_snippets = url.split(".")
@@ -19,24 +20,27 @@ def getUrlsFromTxt(): #helper function to get the files from text
 
 
 def main():
-    query = input("enter a search query -> ") #input a search query 
-    articles = [] #will be holding a list of articles for nlp processing
+    query = input("enter a search query -> ") #input a search query
+    file = open('articlebodies.txt','r').read()
+    articles = ast.literal_eval(file) #will be holding a list of articles for nlp processing
     api = NewsApi() #used to return a list of urls from the api
-    urls = getUrlsFromTxt()
+    urls = getUrlsFromTxt()#only if you don't have a text file
     dp = DataProcessor()
-    wp = WebParser()
-    urlcount = 1
-    bodies = open('articlebodies.txt','w')
-    for url in urls: #iterate through list of urls
-        print(urlcount,')', url)
-        #split the url into snippets
-        site = check_url(url)
-        print('site -> ',site)
-        if site == 'foxnews':
-            articles.append(wp.extract_body_foxnews(url))
-        elif site == 'nytimes':
-            articles.append(wp.extract_body_nyt(url))
-        urlcount += 1
+    
+    # wp = WebParser()
+    
+    # urlcount = 1#url counter used for debugging purposes
+    
+    # for url in urls: #iterate through list of urls
+    #     print(urlcount,')', url)
+    #     #split the url into snippets
+    #     site = check_url(url)
+    #     print('site -> ',site)
+    #     if site == 'foxnews':
+    #         articles.append(wp.extract_body_foxnews(url))
+    #     elif site == 'nytimes':
+    #         articles.append(wp.extract_body_nyt(url))
+    #     urlcount += 1
 
     # freq_words = dp.process(articles[0])
     # print(freq_words)
@@ -56,7 +60,7 @@ def main():
     print('term_frequency_document: ',term_frequency_document)
     print('similarity: ',similarity)
     print('sorted_doc_list: ',sorted_doc_list)
-    bodies.close()
+
 
 
 
