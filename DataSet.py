@@ -23,6 +23,7 @@ def main():
     query = input("enter a search query -> ") #input a search query
     file = open('articlebodies.txt','r').read()
     articles = ast.literal_eval(file) #will be holding a list of articles for nlp processing
+    full_articles = [article for article in articles if len(article) > 0]#remove empty bodies
     api = NewsApi() #used to return a list of urls from the api
     urls = getUrlsFromTxt()#only if you don't have a text file
     dp = DataProcessor()

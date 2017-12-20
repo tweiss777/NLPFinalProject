@@ -15,16 +15,17 @@ class Clustering:
         x = vectorizer.fit_transform(doc_list)
         xa = x.toarray()
         
-        model = KMeans(n_clusters=k,init='k-means++', max_iter=100, n_init=1)
+        model = KMeans(n_clusters=k,init='k-means++', max_iter=100, n_init=1)#initialize object
+        model.fit(x) #performs k mean clustering
 
         centroids = model.cluster_centers_.argsort()[:,::-1]
         vocab = vectorizer.get_feature_names() # gets the name of the terms from the integers
         for i in range(k):
-            for ind in centroids:
-                vocab_cluster[i].append(vocab[ind0])
-`       
+            for ind in centroids[i,0:]:
+                vocab_cluster[i].append(vocab[ind])
+
         for doc in doc_list:
-            y = vectorizer.fit_transform([doc])
+            y = vectorizer.transform([doc])
             prediction = model.predict(y)
             cluster_doc[prediction[0]].append(doc)
 

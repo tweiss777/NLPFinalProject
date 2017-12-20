@@ -68,17 +68,17 @@ class WebParser():
         final_body = soup.title.getText() #save article title
         div_body = ""
         
-        for tag in soup.find_all('div','article-body'):
+        for tag in soup.find_all('div','article-body'): #
             div_body = div_body + str(tag)
         soup = BeautifulSoup(div_body,'html.parser')
         ptags = "" #all <p> tags go here 
-        for p in soup.find_all('p'):
-            ptags = ptags + str(p)
+        for p in soup.find_all('p'):# body itself is enclosed in <p> tags
+            ptags = ptags + str(p) #contatinate each ptag to a string
         soup = BeautifulSoup(ptags,'html.parser')
         body = soup.get_text()
         
-        body = body.replace("\n","")
-        body = body.replace("\t","") 
+        body = body.replace("\n","") #strip all the new lines
+        body = body.replace("\t","") #strip the tabs
         body = body.replace("\xa0","")
         final_body = final_body + body
         
