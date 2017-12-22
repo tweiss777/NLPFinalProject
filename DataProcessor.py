@@ -78,7 +78,7 @@ class DataProcessor:
             print('\n Error = no common terms between query and docs')
         else:
             idf_query = [np.log2((1 + nr_docs) / doc_freq.get(t)) for t in common_terms]
-            print('\nIDF Query Terms', idf_query)
+            #print('\nIDF Query Terms', idf_query)
 
             # tf transformation = log2(1+tf(t)) in each document
 
@@ -108,7 +108,7 @@ class DataProcessor:
 
     #function to return the inverted index
     def inverted_index(self,doc_list):
-        print("generating inverted index")
+        print("generating inverted index...")
         doc_amt = len(doc_list) # holds the length of the doc_list
 
         doc_list_str = str(doc_list)
@@ -119,11 +119,11 @@ class DataProcessor:
             term_frequency = self.process(doc_list[doc]) #tuple consists of (term,frequency of the term)
 
             #output below used for debugging purposes
-            print("\n\nnext document to be processed", term_frequency)
+            #print("\n\nnext document to be processed", term_frequency)
             doc_term_frequency += [(term,doc,frequency) for (term,frequency) in term_frequency] #tuple consists of (term, document id, term frequency)
 
             #used for debugging purposes
-            print("\n All terms in document:" , doc_term_frequency)
+            #print("\n All terms in document:" , doc_term_frequency)
 
             #list of terms and frequences
 
@@ -241,7 +241,7 @@ class DataProcessor:
             print("Error, no common terms between query & docs")
         else:
             idf_query = [np.log2((1 + nr_docs) / doc_freq.get(t)) for t in common_terms]
-            print("IDF Query terms ", idf_query)
+            #print("IDF Query terms ", idf_query)
 
             for doc in range(nr_docs):
                 tf_q = [f for (t,f) in term_freq_query if t in common_terms]
