@@ -61,7 +61,7 @@ def main():
     print(docCluster[sorted_cluster_list[0]][doc_id])#print article 
     df,tfd = dp.inverted_index(docCluster[sorted_cluster_list[0]])
     similarity,sorted_doc_list = dp.tf_idf(docCluster[sorted_cluster_list[0]],df,tfd,docCluster[sorted_cluster_list[0]][doc_id])
-    print("top 5 similar docs in cluster %d " %sorted_cluster_list[0] ,sorted_doc_list)
+    print("top 5 similar docs in cluster %d " %sorted_cluster_list[0] ,sorted_doc_list[:5])
     print("similarity scores: ",similarity)
 
 
